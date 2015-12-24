@@ -105,31 +105,19 @@
     <script src="js/bootstrap-toggle.js"></script>
 
     <script>
-		$(document).ready(function() {
+	$(document).ready(function() {
+		$("input").change(function() {
+			var durum = $(this).is(':checked');
+			var roleid = $(this).val();
+			
+			if(durum==true) { var islem = 0; }
+			else { var islem = 1;}
 
-			$("input").change(function() {
-				var durum = $(this).is(':checked');
-				var roleid = $(this).val();
-				if(durum==true) {
+          		$.post( "/islem.php", { islem: islem, role: roleid }).done(function( data ) {});
 
-          var islem = 0;
-
-				} else {
-
-         var islem = 1;
-
-				}
-
-          $.post( "/islem.php", { islem: islem, role: roleid })
-          .done(function( data ) {
-          });
-
-			});
-
-
+		});
             
         });
-	
 	</script>
 
   </body>
