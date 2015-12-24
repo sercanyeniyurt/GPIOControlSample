@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Telmag Bilişim</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-toggle.css" rel="stylesheet">
+    <style>
+	
+	body {
+	  padding-top: 50px;
+	}
+	.starter-template {
+	  padding: 40px 15px;
+	  text-align: center;
+	}
+	
+	</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Raspberry Pi 2 Role Kontrol</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Raspberry Pi 2 Role Kontrol</h1>
+        <p class="lead">Bu proje başlangıç aşamasında yapılmış bir role kontrol yazılımıdır. Donanım olarak Raspberry Pi 2 kullanılmaktadır, Paralel bağlantılı olarak 4 kontrollü role kontrol mevcuttur. Aşağıdan test edebilirsiniz.</p>
+      </div>
+      
+<table class="table table-striped">
+  <thead>
+  	<tr>
+    	<th>Role Pin</th>
+        <th>İşlev</th>
+        <th>İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<tr>
+    	<td>1</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="6" data-toggle="toggle" data-item-id='6' class="lamba"></td>
+    </tr>
+    <tr>
+      <td>2</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="26" data-toggle="toggle" data-item-id='26' class="lamba"></td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="12" data-toggle="toggle" data-item-id='12' class="lamba"></td>
+    </tr>
+    <tr>
+      <td>4</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="13" data-toggle="toggle" data-item-id='13' class="lamba"></td>
+    </tr>
+    <tr>
+      <td>5</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="20" data-toggle="toggle" data-item-id='20' class="lamba"></td>
+    </tr>
+    <tr>
+      <td>6</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="21" data-toggle="toggle" data-item-id='21' class="lamba"></td>
+    </tr>
+    <tr>
+      <td>7</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="19" data-toggle="toggle" data-item-id='19' class="lamba"></td>
+    </tr>
+    <tr>
+      <td>8</td>
+        <td>Lamba</td>
+        <td><input type="checkbox" value="16" data-toggle="toggle" data-item-id='16' class="lamba"></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+    </div><!-- /.container -->
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-toggle.js"></script>
+
+    <script>
+		$(document).ready(function() {
+
+
+      function clearDom(div){$(div).remove();}
+			
+			$("input").change(function() {
+				var durum = $(this).is(':checked');
+				var roleid = $(this).val();
+				if(durum==true) {
+
+          var islem = 0;
+
+				} else {
+
+         var islem = 1;
+
+				}
+
+          $.post( "/islem.php", { islem: islem, role: roleid })
+          .done(function( data ) {
+          });
+
+			});
+
+
+            
+        });
+	
+	</script>
+
+  </body>
+</html>
